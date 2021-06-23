@@ -13,11 +13,12 @@
         <div class="mask_title">你的标题</div>
     </div>
     <div carousel-item>
-        <div class="carousel_item"><img class="carousel_item_img" src="img/works/psc.jpg" alt="轮播图"></div>
-        <div class="carousel_item"><img class="carousel_item_img" src="img/works/temp1.jpg" alt="轮播图"/></div>
-        <div class="carousel_item"><img class="carousel_item_img" src="img/works/psc.jpg" alt="轮播图"/></div>
-        <div class="carousel_item"><img class="carousel_item_img" src="img/works/psc.jpg" alt="轮播图"/></div>
-        <div class="carousel_item"><img class="carousel_item_img" src="img/works/psc.jpg" alt="轮播图"/></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="http://r.photo.store.qq.com/psc?/64d2cdbd-c035-47a2-b479-c4b982d4315c/45NBuzDIW489QBoVep5mcWeCbJRt*HpX0fdliR5qyh8ov1jwgzcHNnuiQh9S0Ktrp8sK4nn.G2DQHNyG1.gXkuJsjqdMB1ZYsy9aD7ef7.U!/r" alt="轮播图"/></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="http://r.photo.store.qq.com/psc?/64d2cdbd-c035-47a2-b479-c4b982d4315c/45NBuzDIW489QBoVep5mcWeCbJRt*HpX0fdliR5qyh.4dP9iHMNlm0ZUlLS5Q9k5re4f*xroL.0Q.zMjZkjXoQNdyhNXcWcfGpYqG39rI4U!/r" alt="轮播图"></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="http://r.photo.store.qq.com/psc?/64d2cdbd-c035-47a2-b479-c4b982d4315c/45NBuzDIW489QBoVep5mcccBn9diO86Vaa5KKnNOB6muz3cswbwF5vlzwDvK8AIOHra147ofheBXg6U8h*tINirtaVjvmUEipgmUmGyd8n8!/r" alt="轮播图"/></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="http://r.photo.store.qq.com/psc?/64d2cdbd-c035-47a2-b479-c4b982d4315c/45NBuzDIW489QBoVep5mceRClQnafVwbeKu.suMmBdiUwDDYmlLg94k.xwIQ07r1x9qb8PSkLJY*slt9kkz3lfODwMd0Ds2jGSAo1DMHFkw!/r" alt="轮播图"/></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="http://r.photo.store.qq.com/psc?/64d2cdbd-c035-47a2-b479-c4b982d4315c/45NBuzDIW489QBoVep5mcbcNWwzbnSYCGq6idgU.8d4xlAF3brNjO.Ab6I2SGHMXlE7ijU3KmL6nl.zBrO*mxzamA**RXYea2zCgMJyxlAo!/r" alt="轮播图"/></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="http://r.photo.store.qq.com/psb?/64d2cdbd-c035-47a2-b479-c4b982d4315c/5eT.pW3nGSOR5GGG2EIJag3oBe*RDjYb9Z.M3AQErEo!/r/dA0BAAAAAAAA" alt="轮播图"/></div>
     </div>
 </div>
 
@@ -50,7 +51,7 @@
         let elementsByClassName = document.getElementsByClassName("carousel_item_img");
         let minWidth = document.body.clientWidth;
         let minHeight = 600;
-        let rate = minHeight / minHeight;
+        let rate = minHeight / minWidth;
         for (let i = 0; i < elementsByClassName.length; i++) {
             let e = elementsByClassName[i];
             let animationName = 'myMove_' + i;
@@ -67,7 +68,7 @@
                 animationToStr = animationToStr + 'top: -' + (minWidth * realRate - minHeight) + "px;";
             } else if (realRate < rate) {
                 animationFromStr = animationFromStr + 'left: 0;';
-                animationToStr = animationToStr + 'left: -' + (minHeight /realRate - minWidth) + "px;";
+                animationToStr = animationToStr + 'left: -' + (minHeight / realRate - minWidth) + "px;";
             }
             let rule = animationName + ' {from{ ' + animationFromStr + ' }to{ ' + animationToStr + '}';
             document.styleSheets[0].insertRule('@keyframes ' + rule, 0);
