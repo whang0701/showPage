@@ -1,0 +1,25 @@
+#carousel_mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+.mask_title {
+    height: 600px;
+    line-height: 600px;
+    text-align: center;
+    color: white;
+    font-size: 50pt;
+}
+
+.carousel_item {
+    /*background: rgba(0, 0, 0, 0.5);*/
+}
+.carousel_item_img {
+    position: absolute;
+    min-height: 600px;
+    min-width: 100%;
+}

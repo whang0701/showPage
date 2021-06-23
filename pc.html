@@ -1,16 +1,83 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-	</head>
-	<body>
-		<h1>PC页面</h1>
-		<div class="container">
-			
-		</div>
-	</body>
-</html>
+<head>
+    <meta charset="utf-8"/>
+    <title>PC页面</title>
+    <link rel="stylesheet" href="lib/layui-v2.6.8/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/pc.css">
+</head>
+<body>
+<!--轮播-->
+<div id="carousel_container" class="layui-carousel">
+    <div id="carousel_mask">
+        <div class="mask_title">你的标题</div>
+    </div>
+    <div carousel-item>
+        <div class="carousel_item"><img class="carousel_item_img" src="img/works/psc.jpg" alt="轮播图"></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="img/works/temp1.jpg" alt="轮播图"/></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="img/works/psc.jpg" alt="轮播图"/></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="img/works/psc.jpg" alt="轮播图"/></div>
+        <div class="carousel_item"><img class="carousel_item_img" src="img/works/psc.jpg" alt="轮播图"/></div>
+    </div>
+</div>
 
+
+<!--js-->
+<script src="lib/layui-v2.6.8/layui/layui.js"></script>
 <script>
+    layui.use('carousel', function () {
+        // 轮播-渲染
+        let carousel = layui.carousel;
+        carousel.render({
+            elem: '#carousel_container',
+            width: '100%',
+            height: '600px',
+            anim: 'fade',
+            arrow: 'hover',
+            indicator: 'inside',
+            interval: 7000,
+            // autoplay: false,
+        });
+        // 轮播蒙版-提高轮播按钮
+        let carousel_mask_zIndex = parseInt(window.getComputedStyle(document.getElementById("carousel_mask")).zIndex);
+        let element1 = document.querySelector("#carousel_container > div.layui-carousel-ind");
+        element1.style.zIndex = (carousel_mask_zIndex + 1).toString();
+        let element2 = document.querySelectorAll("#carousel_container > button.layui-carousel-arrow");
+        for (let e of element2) {
+            e.style.zIndex = (carousel_mask_zIndex + 1).toString();
+        }
+        // 轮播图-超长设置动画
+        let elementsByClassName = document.getElementsByClassName("carousel_item_img");
+        let minWidth = document.body.clientWidth;
+        let minHeight = 600;
+        let rate = minHeight / minHeight;
+        for (let i = 0; i < elementsByClassName.length; i++) {
+            let e = elementsByClassName[i];
+            let animationName = 'myMove_' + i;
+            let animationFromStr = '';
+            let animationToStr = '';
+            let realRate = e.height / e.width;
+            if (e.height > minHeight && e.width > minWidth) {
+                animationFromStr = animationFromStr + 'top: 0;';
+                animationToStr = animationToStr + 'top: -' + (e.height - minHeight) + "px;";
+                animationFromStr = animationFromStr + 'left: 0;';
+                animationToStr = animationToStr + 'left: -' + (e.width - minWidth) + "px;";
+            } else if (realRate > rate) {
+                animationFromStr = animationFromStr + 'top: 0;';
+                animationToStr = animationToStr + 'top: -' + (minWidth * realRate - minHeight) + "px;";
+            } else if (realRate < rate) {
+                animationFromStr = animationFromStr + 'left: 0;';
+                animationToStr = animationToStr + 'left: -' + (minHeight /realRate - minWidth) + "px;";
+            }
+            let rule = animationName + ' {from{ ' + animationFromStr + ' }to{ ' + animationToStr + '}';
+            document.styleSheets[0].insertRule('@keyframes ' + rule, 0);
+            e.style.animation = animationName + ' 20s linear infinite alternate';
+            document.styleSheets[0].insertRule('@-webkit-keyframes ' + rule, 0);
+            e.style.webkitAnimation = animationName + ' 20s linear infinite alternate';
+        }
+    });
+
+
 </script>
+</body>
+</html>
